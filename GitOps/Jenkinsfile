@@ -20,7 +20,7 @@ pipeline {
         stage('Git: Code Checkout') {
             steps {
                 script{
-                    code_checkout("https://github.com/Aadi-Sonwane/Wanderlust-Mega-Project.git","main")
+                    clone("https://github.com/Aadi-Sonwane/Wanderlust-Mega-Project.git","main")
                 }
             }
         }
@@ -57,7 +57,7 @@ pipeline {
         stage("Git: Code update and push to GitHub"){
             steps{
                 script{
-                    withCredentials([gitUsernamePassword(credentialsId: 'Github-cred', gitToolName: 'Default')]) {
+                    withCredentials([gitUsernamePassword(credentialsId: 'GithubCred', gitToolName: 'Default')]) {
                         sh '''
                         echo "Checking repository status: "
                         git status
@@ -69,7 +69,7 @@ pipeline {
                         git commit -m "Updated environment variables"
                         
                         echo "Pushing changes to github: "
-                        git push https://github.com/LondheShubham153/Wanderlust-Mega-Project.git main
+                        git push https://github.com/Aadi-Sonwane/Wanderlust-Mega-Project.git main
                     '''
                     }
                 }
